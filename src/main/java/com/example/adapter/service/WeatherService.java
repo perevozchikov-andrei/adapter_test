@@ -11,6 +11,7 @@ public class WeatherService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+    // метод довольно сильно упрощен, так как это тестовое
     public Integer getTemperature(MsgA.Coordinates coordinates) {
         String url = String.format("https://api.gismeteo.ru/v1/weather?lat=%s&lon=%s",
                 coordinates.getLatitude(), coordinates.getLongitude());

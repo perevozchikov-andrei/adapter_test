@@ -41,7 +41,11 @@ public class AdapterController {
 
         sendToServiceB(msgB);
     }
-
+    /*
+     этот метод можно было сделать в сервисном слое,
+     но не хотелось в тестовом отдельный класс под него делать
+     поэтому реализовал прям в контроллере
+    */
     private void sendToServiceB(MsgB msgB) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -49,6 +53,7 @@ public class AdapterController {
         HttpEntity<MsgB> requestEntity = new HttpEntity<>(msgB, headers);
 
         try {
+            // url сервиса Б условный, в реальном сервисе будет реальный
             String serviceBUrl = "http://service-b-url/endpoint";
             ResponseEntity<Void> response = restTemplate.postForEntity(serviceBUrl, requestEntity, Void.class);
             if (response.getStatusCode().is2xxSuccessful()) {
